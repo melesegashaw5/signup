@@ -3,85 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login / Signup</title>
+  <title>Login</title>
   <link rel="stylesheet" href="style.css" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
-<div class="container">
-  <div class="form-box" id="form-box">
-    <div class="toggle-buttons">
-      <button id="loginBtn" class="active">Login</button>
-      <button id="signupBtn">Sign Up</button>
-    </div>
+  <div class="wrapper">
+    <form action="">
+      <h1>Login</h1>
 
-    <form id="login-form" class="form active">
-      <h2>Login</h2>
       <div class="input-box">
         <input type="text" placeholder="Username" required>
         <i class='bx bxs-user'></i>
       </div>
+
       <div class="input-box">
         <input type="password" placeholder="Password" required>
         <i class='bx bxs-lock-alt'></i>
       </div>
-      <button type="submit" class="btn">Login</button>
-    </form>
 
-    <form id="signup-form" class="form">
-      <h2>Sign Up</h2>
-      <div class="input-box">
-        <input type="text" placeholder="First Name" required>
+      <div class="remember-forgot">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="#">Forgot password?</a>
       </div>
-      <div class="input-box">
-        <input type="text" placeholder="Last Name" required>
+
+      <button type="submit" class="btn">Login</button>
+
+      <div class="register-link">
+        <p>Don't have an account? <a href="signup.html">Register</a></p>
       </div>
-      <div class="input-box">
-        <input type="email" placeholder="Email" required>
-      </div>
-      <div class="input-box">
-        <input type="tel" placeholder="Phone Number" required>
-      </div>
-      <div class="input-box">
-        <select id="country" required>
-          <option value="">Select your country</option>
-        </select>
-      </div>
-      <div class="input-box">
-        <input type="password" placeholder="Password"
-               pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}"
-               title="At least 1 uppercase, lowercase, number, symbol & 8+ characters"
-               required>
-      </div>
-      <div class="input-box">
-        <input type="password" placeholder="Re-enter Password" required>
-      </div>
-      <button type="submit" class="btn">Sign Up</button>
     </form>
   </div>
-</div>
 
-<script src="countries.js"></script>
-<script>
-  const loginBtn = document.getElementById("loginBtn");
-  const signupBtn = document.getElementById("signupBtn");
-  const loginForm = document.getElementById("login-form");
-  const signupForm = document.getElementById("signup-form");
-
-  loginBtn.onclick = () => {
-    loginForm.classList.add("active");
-    signupForm.classList.remove("active");
-    loginBtn.classList.add("active");
-    signupBtn.classList.remove("active");
-  };
-
-  signupBtn.onclick = () => {
-    signupForm.classList.add("active");
-    loginForm.classList.remove("active");
-    signupBtn.classList.add("active");
-    loginBtn.classList.remove("active");
-  };
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
