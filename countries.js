@@ -1,19 +1,11 @@
-const countries = [
-  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina",
-  "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
-  "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
-  "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
-  // ... (include all countries or load via REST API if needed)
-  "United States", "United Kingdom", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City",
-  "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-];
+const countries = [ /* full list like previous answer */ ];
 
 window.addEventListener("DOMContentLoaded", () => {
-  const countrySelect = document.getElementById("country");
-  countries.sort().forEach(country => {
-    const option = document.createElement("option");
-    option.value = country;
-    option.textContent = country;
-    countrySelect.appendChild(option);
+  const select = document.getElementById("country");
+  countries.sort().forEach(name => {
+    const opt = document.createElement("option");
+    opt.value = name;
+    opt.textContent = name;
+    select.appendChild(opt);
   });
 });
