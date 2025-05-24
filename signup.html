@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="wrapper">
+    <form action="">
+      <h1>Sign Up</h1>
+
+      <div class="input-box">
+        <input type="text" placeholder="First Name" name="fname" required />
+      </div>
+
+      <div class="input-box">
+        <input type="text" placeholder="Last Name" name="lname" required />
+      </div>
+
+      <div class="input-box">
+        <input type="email" placeholder="Email" name="email" required />
+      </div>
+
+      <div class="input-box">
+        <input type="tel" placeholder="Phone Number" name="phone" required />
+      </div>
+
+      <div class="input-box">
+        <select id="country" name="country" required>
+          <option value="">Select your country</option>
+        </select>
+      </div>
+
+      <div class="input-box">
+        <input type="password" placeholder="Password" name="password"
+          pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}" 
+          title="Must contain uppercase, lowercase, number, symbol and be 8+ characters"
+          required />
+      </div>
+
+      <div class="input-box">
+        <input type="password" placeholder="Re-enter Password" name="confirm_password" required />
+      </div>
+
+      <button type="submit" class="btn">Sign Up</button>
+
+      <div class="register-link">
+        <p>Already have an account? <a href="index.html">Login</a></p>
+      </div>
+    </form>
+  </div>
+
+  <script src="countries.js"></script>
+</body>
+</html>
