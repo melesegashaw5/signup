@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    entrypoint: /app/entrypoint.sh # Added entrypoint
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DJANGO_SECRET_KEY=change_me_in_production_and_local_env_too
+      - DJANGO_DEBUG=True
+      - DB_NAME=seven_tour_db
+      - DB_USER=seven_tour_user
+      - DB_PASSWORD=password # Should match db service password
+      - DB_HOST=db
+      - DB_PORT=5432
+    # networks:
+    #   - seven_tour_net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile # To be created
+    volumes:
+      - ./frontend/src:/app/src # Mount src for hot reloading
+      - ./frontend/public:/app/public # Mount public for hot reloading
+    ports:
+      - "3000:3000"
+    stdin_open: true # For react-scripts
+    tty: true # For react-scripts
+    depends_on:
+      - backend
+    # networks:
+    #   - seven_tour_net
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=seven_tour_db
+      - POSTGRES_USER=seven_tour_user
+      - POSTGRES_PASSWORD=password # Should match backend DB_PASSWORD
+    ports:
+      - "5432:5432" # Expose for local inspection if needed, not strictly necessary for app
+    # networks:
+    #   - seven_tour_net
+
+volumes:
+  postgres_data:
+
+# networks:
+#   seven_tour_net:
+#     driver: bridge

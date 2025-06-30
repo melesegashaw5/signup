@@ -1,0 +1,126 @@
+name: CI/CD Pipeline for Seven Tour Operator
+
+on:
+  push:
+    branches:
+      - main # Or your primary development branch e.g., 'develop'
+  pull_request:
+    branches:
+      - main # Or 'develop'
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    services:
+      # Service for PostgreSQL database, if backend tests need a live DB
+      # This might be redundant if tests are run inside the backend container against its own DB setup
+      # or if using docker-compose for tests. For a standalone job, this is one way.
+      # postgres:
+      #   image: postgres:13-alpine
+      #   env:
+      #     POSTGRES_DB: test_seven_tour_db
+      #     POSTGRES_USER: test_user
+      #     POSTGRES_PASSWORD: test_password
+      #   ports:
+      #     - 5432:5432 # Exposes it to the runner if needed directly
+      #   options: >-
+      #     --health-cmd pg_isready
+      #     --health-interval 10s
+      #     --health-timeout 5s
+      #     --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Backend Steps
+      - name: Build Backend Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./seven_tour/backend
+          file: ./seven_tour/backend/Dockerfile
+          push: false # Do not push image for PRs or main branch builds without a release tag
+          tags: seven-tour-backend:latest # Example tag
+          load: true # Load image into docker for subsequent steps like running tests
+
+      # Frontend Steps
+      - name: Build Frontend Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./seven_tour/frontend
+          file: ./seven_tour/frontend/Dockerfile
+          push: false
+          tags: seven-tour-frontend:latest
+          load: true
+
+      # Placeholder for running tests - more complex setup needed
+      # This would typically involve docker-compose to spin up backend + db and run tests
+      # Or running tests within the built backend container if it's self-sufficient for tests
+      # - name: Run Backend Tests (Example - needs docker-compose or more setup)
+      #   run: |
+      #     echo "TODO: Implement test execution step."
+      #     # Example: docker-compose -f seven_tour/docker-compose.yml run --rm backend python manage.py test
+      #     # This requires docker-compose to be available and configured for CI.
+      #     # For this to work, DB connection in settings_test.py might need to point to 'postgres' service above.
+
+      # TODO: Add Linting steps for backend (e.g., flake8) and frontend (e.g., eslint)
+
+  # Example: Job for pushing images to a registry on merge to main or on tag
+  # deploy-images:
+  #   needs: test-and-build # Depends on successful test and build
+  #   if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v3
+
+  #     - name: Log in to Docker Hub (or other registry)
+  #       uses: docker/login-action@v3
+  #       with:
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
+          # registry: ghcr.io # if using GitHub Container Registry
+          # username: ${{ github.actor }}
+          # password: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Build and Push Backend Docker image
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: ./seven_tour/backend
+      #     file: ./seven_tour/backend/Dockerfile
+      #     push: true
+      #     tags: yourdockerusername/seven-tour-backend:latest # Replace with your registry path
+
+      # - name: Build and Push Frontend Docker image
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: ./seven_tour/frontend
+      #     file: ./seven_tour/frontend/Dockerfile
+      #     push: true
+      #     tags: yourdockerusername/seven-tour-frontend:latest # Replace with your registry path
+
+      # TODO: Add deployment steps (e.g., to Kubernetes, Heroku, AWS ECS, etc.)
+      # This would use the pushed images.
+      # Example: Deploy to Heroku using a Heroku action or CLI commands
+      # Example: Deploy to Kubernetes using kubectl apply with kustomize/helm
+
+# Notes for User:
+# 1. This is a basic CI workflow. Testing backend within CI needs careful setup:
+#    - Either use docker-compose within the GitHub Action to run tests (preferred for integration tests).
+#    - Or, adapt Django settings for CI (e.g., use SQLite for tests if no external DB service is used in CI).
+#      The current entrypoint.sh applies migrations which needs a DB.
+# 2. For `deploy-images` job:
+#    - You need to set DOCKER_USERNAME and DOCKER_PASSWORD as secrets in your GitHub repository settings.
+#    - Replace 'yourdockerusername' with your actual Docker Hub username or registry path.
+# 3. Actual deployment steps are highly platform-specific and are placeholders.
+# 4. Consider adding linting (e.g., flake8 for Python, ESLint for React) as separate jobs or steps.
+# 5. For frontend, REACT_APP_GOOGLE_CLIENT_ID will be needed at build time if not hardcoded.
+#    This can be passed as a build-arg in the frontend Dockerfile and then to the build command.
+#    Or, configured at runtime if the Nginx container can inject it.
+# 6. For backend, DJANGO_SECRET_KEY, DB credentials etc. should be managed via secrets for deployment.
+#    The docker-compose.yml has defaults suitable for local dev, not production.
+#    These would be set as environment variables in the deployment environment.

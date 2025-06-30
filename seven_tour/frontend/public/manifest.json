@@ -1,0 +1,28 @@
+{
+  "short_name": "SevenTour",
+  "name": "Seven Tour Operator",
+  "description": "Your gateway to amazing travel experiences with Seven Tour Operator.",
+  "icons": [
+    {
+      "src": "favicon.ico", // Replace with actual icon paths later
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png", // Example: Create this image
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png", // Example: Create this image
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3F51B5", // Example: Indigo - match brand colors (blue, purple, indigo gradients)
+  "background_color": "#FFFFFF", // Example: White
+  "scope": "/",
+  "orientation": "portrait-primary"
+}

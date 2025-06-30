@@ -1,0 +1,381 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/version info into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+
+# Flask stuff:
+instance/
+.webassets-cache
+*.sqlite
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# PEP 582; __pypackages__
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+modules.xml
+# Rider
+*.sln.DotSettings.user
+
+# Eclipse
+.project
+.pydevproject
+.settings/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+
+# Optional Sentry files
+.sentryclirc
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json # if you use yarn.lock
+yarn.lock # if you use package-lock.json
+pnpm-lock.yaml
+# Other lockfiles if not package-lock.json or yarn.lock
+
+# Frontend build output
+/frontend/build
+/frontend/dist
+/frontend/.cache
+/frontend/.next # if using Next.js
+
+# Environment variables file
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Docker
+docker-compose.override.yml
+secrets/
+# Ignore .history folder from VSCode
+.history
+# Ignore .idea folder from Jetbrains IDEs
+.idea
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# SQLite
+*.sqlite3
+
+# Local settings
+local_settings.py
+
+# Compiled Python files
+*.pyc
+
+# Coverage data
+.coverage
+
+# Build directories
+build/
+dist/
+*.egg-info/
+
+# Virtual environment
+venv/
+env/
+
+# Django migrations (sometimes ignored, depends on strategy)
+# */migrations/*_initial.py
+# */migrations/000[1-9]*.py
+
+# Static files collected by Django's collectstatic
+staticfiles/
+static_cdn/
+
+# Media files (user uploads) - typically not versioned if stored in cloud
+media/
+
+# Frontend specific
+/frontend/node_modules
+/frontend/build
+/frontend/.pnp.*
+
+# IDE specific
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Secrets
+*.key
+*.pem
+secrets.yml
+*.env
+credentials*
+config.json # If it contains secrets
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Serverless Framework
+.serverless/
+.env.*
+! .env.example
+! .env.sample
+
+# Python specific
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.Python
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Misc
+.cache/
+.DS_Store
+.project
+.pytest_cache/
+.tox/
+pip-wheel-metadata/
+pip-selfcheck.json
+*.bak
+*.orig
+*.rej
+*.rpo
+*.sass-cache/
+*.seed
+# Specific to this project
+/seven_tour/backend/core/settings/local.py # Example if you have local settings
+/seven_tour/backend/db.sqlite3 # If using sqlite for local dev and not in Docker volume
+/seven_tour/backend/staticfiles
+/seven_tour/backend/media
+/seven_tour/frontend/node_modules
+/seven_tour/frontend/build
+
+# Sensitive files
+*.env
+secrets.py
+local_settings.py
+*.pem
+*.key
+credentials.json
+.env.local
+.env.*.local
+! .env.example
+! .env.sample
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Python virtual environment
+venv/
+env/
+.venv/
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.pyc
+__pycache__/
+
+# Coverage reports
+.coverage
+coverage.xml
+htmlcov/
+
+# Docker
+docker-compose.override.yml
+
+# Local database files (if not using Docker for DB in dev)
+db.sqlite3
+*.sql
+*.dump
+
+# Static and Media files (often served by CDN in production)
+# /static/
+# /media/ (unless these are placeholder dirs)
+
+# Project specific logs
+*.log
+logs/
